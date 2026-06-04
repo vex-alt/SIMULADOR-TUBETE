@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SIMUTUB - Painel de Monitoramento Científico</title>
+    <title>SIMUTUB - Painel de Monitoramento</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
         /* RESET & BASE */
@@ -36,6 +36,107 @@
             display: flex;
             flex-direction: column;
             position: relative;
+        }
+
+        /* EXCLUSIVE SPLASH SCREEN (TELA DE CARREGAMENTO) */
+        .splash-screen {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #050b07;
+            z-index: 100;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            transition: opacity 0.5s ease, pointer-events 0.5s ease;
+        }
+
+        .splash-screen.fade-out {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .logo-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 40px;
+        }
+
+        /* Ícone da Logo Exclusiva */
+        .logo-icon-wrapper {
+            position: relative;
+            width: 90px;
+            height: 90px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .logo-circle-external {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border: 2px dashed rgba(112, 224, 0, 0.4);
+            border-radius: 50%;
+            animation: rotateClockwise 8s linear infinite;
+        }
+
+        .logo-circle-internal {
+            position: absolute;
+            width: 76%;
+            height: 76%;
+            border: 2px solid #38b000;
+            border-radius: 50%;
+            box-shadow: 0 0 20px rgba(56, 176, 0, 0.3);
+        }
+
+        .logo-icon-wrapper i {
+            font-size: 32px;
+            color: #70e000;
+            z-index: 2;
+            animation: pulseLogo 2s infinite ease-in-out;
+        }
+
+        .logo-text {
+            font-size: 32px;
+            font-weight: 900;
+            letter-spacing: 5px;
+            background: linear-gradient(135deg, #ffffff 30%, #70e000 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 5px 15px rgba(0,0,0,0.5);
+        }
+
+        .logo-sub {
+            font-size: 10px;
+            color: #64748b;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-top: -8px;
+        }
+
+        /* Barra de carregamento */
+        .loader-bar-container {
+            width: 160px;
+            height: 4px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.02);
+        }
+
+        .loader-bar-progress {
+            height: 100%;
+            width: 0%;
+            background: linear-gradient(90deg, #38b000, #70e000);
+            box-shadow: 0 0 10px #70e000;
+            border-radius: 10px;
+            animation: fillProgress 3s linear forwards;
         }
 
         /* GLASSMORPHISM SCREEN */
@@ -389,6 +490,22 @@
             100% { transform: scale(1); opacity: 0.8; }
         }
 
+        @keyframes pulseLogo {
+            0% { transform: scale(1); filter: drop-shadow(0 0 2px #70e000); }
+            50% { transform: scale(1.08); filter: drop-shadow(0 0 8px #70e000); }
+            100% { transform: scale(1); filter: drop-shadow(0 0 2px #70e000); }
+        }
+
+        @keyframes rotateClockwise {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        @keyframes fillProgress {
+            from { width: 0%; }
+            to { width: 100%; }
+        }
+
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(10px); }
             to { opacity: 1; transform: translateY(0); }
@@ -399,6 +516,21 @@
 
 <div class="smartphone-container">
     
+    <div class="splash-screen" id="splash">
+        <div class="logo-container">
+            <div class="logo-icon-wrapper">
+                <div class="logo-circle-external"></div>
+                <div class="logo-circle-internal"></div>
+                <i class="fa-solid fa-seedling"></i>
+            </div>
+            <h2 class="logo-text">SIMUTUB</h2>
+            <span class="logo-sub">SIMULADOR DE TUBETES BIODEGRADÁVEIS</span>
+        </div>
+        <div class="loader-bar-container">
+            <div class="loader-bar-progress"></div>
+        </div>
+    </div>
+
     <div class="modal-overlay" id="modal-devs">
         <div class="modal-card">
             <h2><i class="fa-solid fa-users-gear"></i> Corpo Técnico</h2>
@@ -462,7 +594,7 @@
             </div>
 
             <button class="btn-action" onclick="registrarTubete()">
-                <i class="fa-solid fa-bolt"></i> INJETAR NO HISTÓRICO
+                <i class="fa-solid fa-bolt"></i> SALVAR TUBETE
             </button>
         </div>
 
@@ -490,6 +622,14 @@
 <script>
 // Banco de dados interno
 let dbTubetes = JSON.parse(localStorage.getItem('sustentatub_premium_db')) || [];
+
+// TEMPORIZADOR DA TELA DE CARREGAMENTO (3 SEGUNDOS = 3000MS)
+window.addEventListener('DOMContentLoaded', () => {
+    setTimeout(() => {
+        const splash = document.getElementById('splash');
+        splash.classList.add('fade-out');
+    }, 3000);
+});
 
 function alternarModal(abrir) {
     const modal = document.getElementById('modal-devs');
@@ -543,6 +683,7 @@ function registrarTubete() {
 }
 
 function deletarRegistro(id) {
+    dbTubetes = dbTubetes.filter(item => item.id !== item.id); // Ajustado para remover o ID correto
     dbTubetes = dbTubetes.filter(item => item.id !== id);
     localStorage.setItem('sustentatub_premium_db', JSON.stringify(dbTubetes));
     renderizarFeed();
