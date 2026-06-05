@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SIMUTUB - Painel de Monitoramento</title>
+    <title>SIMUTUB - Painel de Monitoramento Científico</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
         /* RESET & BASE */
@@ -24,7 +24,7 @@
             color: #e2e8f0;
         }
 
-        /* SMARTPHONE PREMIUM (ECO-CYBER) */
+        /* SMARTPHONE CONTAINER */
         .smartphone-container {
             width: 390px;
             height: 800px;
@@ -38,7 +38,7 @@
             position: relative;
         }
 
-        /* EXCLUSIVE SPLASH SCREEN (TELA DE CARREGAMENTO) */
+        /* TELA DE CARREGAMENTO */
         .splash-screen {
             position: absolute;
             top: 0;
@@ -67,7 +67,6 @@
             margin-bottom: 40px;
         }
 
-        /* Ícone da Logo Exclusiva */
         .logo-icon-wrapper {
             position: relative;
             width: 90px;
@@ -109,7 +108,6 @@
             background: linear-gradient(135deg, #ffffff 30%, #70e000 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            text-shadow: 0 5px 15px rgba(0,0,0,0.5);
         }
 
         .logo-sub {
@@ -120,14 +118,12 @@
             margin-top: -8px;
         }
 
-        /* Barra de carregamento */
         .loader-bar-container {
             width: 160px;
             height: 4px;
             background: rgba(255, 255, 255, 0.05);
             border-radius: 10px;
             overflow: hidden;
-            border: 1px solid rgba(255, 255, 255, 0.02);
         }
 
         .loader-bar-progress {
@@ -135,11 +131,10 @@
             width: 0%;
             background: linear-gradient(90deg, #38b000, #70e000);
             box-shadow: 0 0 10px #70e000;
-            border-radius: 10px;
             animation: fillProgress 3s linear forwards;
         }
 
-        /* GLASSMORPHISM SCREEN */
+        /* SCREEN */
         .app-screen {
             background: linear-gradient(180deg, rgba(13, 31, 20, 0.8) 0%, rgba(5, 11, 7, 0.95) 100%);
             flex: 1;
@@ -150,16 +145,7 @@
             gap: 20px;
         }
 
-        /* CUSTOM SCROLLBAR */
-        .app-screen::-webkit-scrollbar {
-            width: 4px;
-        }
-        .app-screen::-webkit-scrollbar-thumb {
-            background: #38b000;
-            border-radius: 10px;
-        }
-
-        /* HEADER PREMIUM */
+        /* HEADER */
         .app-header {
             display: flex;
             flex-direction: column;
@@ -184,7 +170,6 @@
         .brand i {
             color: #38b000;
             font-size: 24px;
-            animation: pulse 2s infinite;
         }
 
         .brand h1 {
@@ -206,44 +191,44 @@
             color: #70e000;
         }
 
-        /* BOTÃO DESENVOLVEDORES */
-        .btn-devs {
+        /* ALINHAMENTO DOS BOTÕES */
+        .header-buttons {
+            display: flex;
+            gap: 10px;
+            width: 100%;
+        }
+
+        .btn-nav-header {
             background: rgba(255, 255, 255, 0.05);
             border: 1px solid rgba(255, 255, 255, 0.1);
             color: #94a3b8;
-            padding: 6px 12px;
+            padding: 8px 12px;
             border-radius: 8px;
             font-size: 11px;
             font-weight: bold;
-            letter-spacing: 1px;
+            letter-spacing: 0.5px;
             cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: center;
             gap: 6px;
             transition: all 0.2s;
-            width: fit-content;
+            flex: 1;
         }
 
-        .btn-devs:hover {
+        .btn-nav-header:hover {
             background: rgba(56, 176, 0, 0.1);
             border-color: #38b000;
             color: #70e000;
         }
 
-        /* CARDS TRANSLÚCIDOS */
+        /* CARDS */
         .card {
             background: rgba(255, 255, 255, 0.03);
             border: 1px solid rgba(255, 255, 255, 0.05);
             backdrop-filter: blur(10px);
             border-radius: 24px;
             padding: 20px;
-            transition: all 0.3s ease;
-        }
-
-        .card:hover {
-            border-color: rgba(56, 176, 0, 0.3);
-            box-shadow: 0 5px 15px rgba(56, 176, 0, 0.05);
         }
 
         .card-title {
@@ -257,9 +242,7 @@
             gap: 10px;
         }
 
-        .card-title i {
-            color: #70e000;
-        }
+        .card-title i { color: #70e000; }
 
         /* INPUTS NUMÉRICOS */
         .input-row {
@@ -273,19 +256,6 @@
             margin-bottom: 12px;
         }
 
-        .input-row:focus-within {
-            border-color: #38b000;
-            background: rgba(56, 176, 0, 0.02);
-        }
-
-        .input-row label {
-            font-size: 14px;
-            color: #cbd5e1;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
         .input-num {
             width: 70px;
             background: transparent;
@@ -297,7 +267,6 @@
             outline: none;
         }
 
-        /* BOTÃO ACTION */
         .btn-action {
             width: 100%;
             background: linear-gradient(135deg, #38b000 0%, #007200 100%);
@@ -307,28 +276,19 @@
             border-radius: 14px;
             font-size: 14px;
             font-weight: bold;
-            letter-spacing: 1px;
             cursor: pointer;
             display: flex;
             justify-content: center;
             align-items: center;
             gap: 10px;
-            margin-top: 15px;
+            margin-top: 5px;
             box-shadow: 0 4px 15px rgba(0, 114, 0, 0.4);
-            transition: all 0.2s;
         }
 
-        .btn-action:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(56, 176, 0, 0.6);
-        }
-
-        /* DISPLAY DE BIO-PREVISÃO */
         .prediction-display {
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: center;
             padding: 10px 0;
         }
 
@@ -343,65 +303,26 @@
             font-size: 11px;
             color: #64748b;
             text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-top: 5px;
         }
 
-        /* HISTÓRICO FUTURISTA */
-        .feed-container {
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-        }
-
+        /* FEED HISTÓRICO */
+        .feed-container { display: flex; flex-direction: column; gap: 12px; }
         .feed-item {
-            background: rgba(255, 255, 255, 0.01);
-            border-left: 4px solid #38b000;
-            border-radius: 0 14px 14px 0;
-            padding: 14px;
-            position: relative;
             background: linear-gradient(90deg, rgba(56, 176, 0, 0.03) 0%, transparent 100%);
-            animation: fadeIn 0.4s ease-out;
+            border-left: 4px solid #38b000;
+            padding: 14px;
+            border-radius: 0 14px 14px 0;
         }
+        .feed-item h4 { color: #70e000; font-size: 13px; display: flex; justify-content: space-between; }
+        .btn-delete { background: transparent; border: none; color: #ef4444; cursor: pointer; }
 
-        .feed-item h4 {
-            font-size: 13px;
-            color: #70e000;
-            margin-bottom: 6px;
-            display: flex;
-            justify-content: space-between;
-        }
-
-        .feed-item p {
-            font-size: 12px;
-            color: #94a3b8;
-            line-height: 1.5;
-        }
-
-        .btn-delete {
-            background: transparent;
-            border: none;
-            color: #ef4444;
-            cursor: pointer;
-            font-size: 12px;
-            opacity: 0.6;
-            transition: opacity 0.2s;
-        }
-
-        .btn-delete:hover {
-            opacity: 1;
-        }
-
-        /* MODAL TRANSLÚCIDO (POPUP CRÉDITOS) */
+        /* MODAIS GENERALIZADOS */
         .modal-overlay {
             position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(5, 11, 7, 0.9);
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(5, 11, 7, 0.95);
             backdrop-filter: blur(12px);
-            z-index: 10;
+            z-index: 90;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -411,11 +332,7 @@
             padding: 20px;
         }
 
-        .modal-overlay.active {
-            opacity: 1;
-            pointer-events: auto;
-        }
-
+        .modal-overlay.active { opacity: 1; pointer-events: auto; }
         .modal-card {
             background: rgba(255, 255, 255, 0.03);
             border: 1px solid rgba(56, 176, 0, 0.3);
@@ -424,92 +341,77 @@
             width: 100%;
             box-shadow: 0 0 30px rgba(56, 176, 0, 0.2);
             text-align: center;
-            transform: scale(0.8);
-            transition: transform 0.3s ease;
         }
 
-        .modal-overlay.active .modal-card {
-            transform: scale(1);
-        }
-
-        .modal-card h2 {
-            font-size: 18px;
-            color: #70e000;
-            letter-spacing: 1px;
-            margin-bottom: 20px;
-            text-transform: uppercase;
-        }
-
+        .modal-card h2 { font-size: 18px; color: #70e000; margin-bottom: 15px; text-transform: uppercase; }
         .dev-section {
-            margin-bottom: 18px;
-            text-align: left;
-            background: rgba(0, 0, 0, 0.3);
-            padding: 12px 15px;
-            border-radius: 14px;
-            border-left: 3px solid #38b000;
+            margin-bottom: 12px; text-align: left;
+            background: rgba(0, 0, 0, 0.3); padding: 12px;
+            border-radius: 14px; border-left: 3px solid #38b000;
         }
+        .dev-section h3 { font-size: 11px; color: #94a3b8; text-transform: uppercase; }
+        .dev-section p { font-size: 13px; color: #edf2f7; margin-top: 2px; }
 
-        .dev-section h3 {
+        /* ESTILOS ESPECÍFICOS DO TUTORIAL */
+        .recipe-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+        .recipe-badge {
+            background: rgba(255,255,255,0.05);
+            padding: 8px;
+            border-radius: 10px;
             font-size: 12px;
-            color: #94a3b8;
-            text-transform: uppercase;
-            margin-bottom: 4px;
-            letter-spacing: 0.5px;
+            text-align: left;
+            border: 1px solid rgba(255,255,255,0.05);
+        }
+        .recipe-badge strong { color: #70e000; }
+        
+        .step-container {
+            background: rgba(0,0,0,0.4);
+            padding: 15px;
+            border-radius: 14px;
+            text-align: left;
+            min-height: 100px;
+            margin-bottom: 15px;
+            border: 1px solid rgba(56,176,0,0.1);
+        }
+        .step-container h4 { color: #70e000; font-size: 13px; margin-bottom: 5px; }
+        .step-container p { font-size: 13px; color: #cbd5e1; line-height: 1.4; }
+
+        .tutorial-image {
+            width: 100%;
+            height: 140px;
+            object-fit: cover;
+            border-radius: 14px;
+            margin-bottom: 15px;
+            border: 2px solid #38b000;
+            display: none;
         }
 
-        .dev-section p {
-            font-size: 14px;
-            color: #edf2f7;
-            font-weight: 500;
-            line-height: 1.4;
+        .tutorial-nav {
+            display: flex;
+            justify-content: space-between;
+            gap: 10px;
         }
+        .btn-tuto {
+            background: rgba(255,255,255,0.1);
+            border: none; color: white; padding: 8px 16px;
+            border-radius: 8px; font-size: 12px; font-weight: bold; cursor: pointer;
+        }
+        .btn-tuto.next { background: #38b000; }
 
         .btn-close-modal {
-            background: transparent;
-            border: 1px solid rgba(255,255,255,0.2);
-            color: #cbd5e1;
-            padding: 10px 20px;
-            border-radius: 10px;
-            cursor: pointer;
-            font-size: 13px;
-            font-weight: bold;
-            margin-top: 10px;
-            transition: all 0.2s;
-        }
-
-        .btn-close-modal:hover {
-            border-color: #ef4444;
-            color: #ef4444;
-            background: rgba(239, 68, 68, 0.05);
+            background: transparent; border: 1px solid rgba(255,255,255,0.2);
+            color: #cbd5e1; padding: 8px 16px; border-radius: 8px;
+            cursor: pointer; font-size: 12px; font-weight: bold; margin-top: 10px;
         }
 
         /* ANIMATIONS */
-        @keyframes pulse {
-            0% { transform: scale(1); opacity: 0.8; }
-            50% { transform: scale(1.1); opacity: 1; text-shadow: 0 0 10px #38b000; }
-            100% { transform: scale(1); opacity: 0.8; }
-        }
-
-        @keyframes pulseLogo {
-            0% { transform: scale(1); filter: drop-shadow(0 0 2px #70e000); }
-            50% { transform: scale(1.08); filter: drop-shadow(0 0 8px #70e000); }
-            100% { transform: scale(1); filter: drop-shadow(0 0 2px #70e000); }
-        }
-
-        @keyframes rotateClockwise {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
-        }
-
-        @keyframes fillProgress {
-            from { width: 0%; }
-            to { width: 100%; }
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
+        @keyframes rotateClockwise { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+        @keyframes fillProgress { from { width: 0%; } to { width: 100%; } }
     </style>
 </head>
 <body>
@@ -524,33 +426,56 @@
                 <i class="fa-solid fa-seedling"></i>
             </div>
             <h2 class="logo-text">SIMUTUB</h2>
-            <span class="logo-sub">SIMULADOR DE TUBETES BIODEGRADÁVEIS</span>
+            <span class="logo-sub">Bio-Intelligence Platform</span>
         </div>
-        <div class="loader-bar-container">
-            <div class="loader-bar-progress"></div>
-        </div>
+        <div class="loader-bar-container"><div class="loader-bar-progress"></div></div>
     </div>
 
     <div class="modal-overlay" id="modal-devs">
         <div class="modal-card">
             <h2><i class="fa-solid fa-users-gear"></i> Corpo Técnico</h2>
-            
             <div class="dev-section">
                 <h3>Desenvolvimento do App</h3>
                 <p>José Victor (Programador e Designer)</p>
             </div>
-
             <div class="dev-section">
                 <h3>Ideação</h3>
                 <p>Karla Yasmim, Maria Clara, Adriely Eduarda, Maryana Barbosa, José Victor</p>
             </div>
+            <button class="btn-close-modal" onclick="alternarModal('modal-devs', false)">FECHAR</button>
+        </div>
+    </div>
 
-            <button class="btn-close-modal" onclick="alternarModal(false)">FECHAR</button>
+    <div class="modal-overlay" id="modal-tutorial">
+        <div class="modal-card" style="padding: 20px;">
+            <h2><i class="fa-solid fa-book-open"></i> Como é Feito</h2>
+            
+            <div class="recipe-grid">
+                <div class="recipe-badge"><strong>5g</strong> Amido</div>
+                <div class="recipe-badge"><strong>75ml</strong> Água</div>
+                <div class="recipe-badge"><strong>5ml</strong> Glicerina</div>
+                <div class="recipe-badge"><strong>5ml</strong> Vinagre</div>
+                <div class="recipe-badge" style="grid-column: span 2; text-align: center;">
+                    <strong>5g</strong> Fibra de Coco
+                </div>
+            </div>
+
+            <div class="step-container">
+                <h4 id="tuto-passo-titulo">Passo 1 / 3</h4>
+                <p id="tuto-passo-texto">Carregando tutorial...</p>
+            </div>
+
+            <img src="img-resultado.jpg" id="tuto-img" class="tutorial-image" alt="Resultado do Tubete">
+
+            <div class="tutorial-nav">
+                <button class="btn-tuto" id="btn-tuto-voltar" onclick="mudarPasso(-1)">Voltar</button>
+                <button class="btn-tuto next" id="btn-tuto-avancar" onclick="mudarPasso(1)">Avançar</button>
+            </div>
+            <button class="btn-close-modal" style="width: 100%;" onclick="alternarModal('modal-tutorial', false)">SAIR DO TUTORIAL</button>
         </div>
     </div>
 
     <div class="app-screen">
-        
         <div class="app-header">
             <div class="header-top">
                 <div class="brand">
@@ -559,16 +484,18 @@
                 </div>
                 <div class="badge-massa"><span id="peso-total">0</span>g ativo</div>
             </div>
-            <button class="btn-devs" onclick="alternarModal(true)">
-                <i class="fa-solid fa-code"></i> DESENVOLVEDORES
-            </button>
+            <div class="header-buttons">
+                <button class="btn-nav-header" onclick="alternarModal('modal-tutorial', true)">
+                    <i class="fa-solid fa-hammer"></i> COMO É FEITO
+                </button>
+                <button class="btn-nav-header" onclick="alternarModal('modal-devs', true)">
+                    <i class="fa-solid fa-code"></i> DEVS
+                </button>
+            </div>
         </div>
 
         <div class="card">
-            <div class="card-title">
-                <i class="fa-solid fa-dna"></i> Entrada de Biomassa
-            </div>
-            
+            <div class="card-title"><i class="fa-solid fa-dna"></i> Entrada de Biomassa</div>
             <div class="input-row">
                 <label><i class="fa-solid fa-tree" style="color: #b79457;"></i> Fibra de Coco</label>
                 <div>
@@ -576,7 +503,6 @@
                     <span style="color: #64748b; font-weight: bold;">g</span>
                 </div>
             </div>
-
             <div class="input-row">
                 <label><i class="fa-solid fa-egg" style="color: #e2e8f0;"></i> Casca de Ovo</label>
                 <div>
@@ -584,7 +510,6 @@
                     <span style="color: #64748b; font-weight: bold;">g</span>
                 </div>
             </div>
-
             <div class="input-row">
                 <label><i class="fa-solid fa-lemon" style="color: #ffd166;"></i> Casca de Banana</label>
                 <div>
@@ -592,16 +517,11 @@
                     <span style="color: #64748b; font-weight: bold;">g</span>
                 </div>
             </div>
-
-            <button class="btn-action" onclick="registrarTubete()">
-                <i class="fa-solid fa-bolt"></i> SALVAR TUBETE
-            </button>
+            <button class="btn-action" onclick="registrarTubete()"><i class="fa-solid fa-bolt"></i> INJETAR NO HISTÓRICO</button>
         </div>
 
         <div class="card">
-            <div class="card-title">
-                <i class="fa-solid fa-wand-magic-sparkles"></i> Inteligência Predictiva
-            </div>
+            <div class="card-title"><i class="fa-solid fa-wand-magic-sparkles"></i> Inteligência Predictiva</div>
             <div class="prediction-display">
                 <div class="prediction-number" id="tempo-resultado">0 Semanas</div>
                 <div class="prediction-label">Tempo de integração biológica</div>
@@ -609,42 +529,68 @@
         </div>
 
         <div class="card" style="flex: 1; display: flex; flex-direction: column;">
-            <div class="card-title">
-                <i class="fa-solid fa-server"></i> Banco de Dados Local (<span id="contador">0</span>)
-            </div>
-            <div class="feed-container" id="feed-lista">
-                </div>
+            <div class="card-title"><i class="fa-solid fa-server"></i> Banco de Dados Local (<span id="contador">0</span>)</div>
+            <div class="feed-container" id="feed-lista"></div>
         </div>
-
     </div>
 </div>
 
 <script>
-// Banco de dados interno
-let dbTubetes = JSON.parse(localStorage.getItem('sustentatub_premium_db')) || [];
+let dbTubetes = JSON.parse(localStorage.getItem('simutub_premium_db')) || [];
 
-// TEMPORIZADOR DA TELA DE CARREGAMENTO (3 SEGUNDOS = 3000MS)
+// SPLASH SCREEN TIMER
 window.addEventListener('DOMContentLoaded', () => {
-    setTimeout(() => {
-        const splash = document.getElementById('splash');
-        splash.classList.add('fade-out');
-    }, 3000);
+    setTimeout(() => { document.getElementById('splash').classList.add('fade-out'); }, 3000);
+    atualizarTutorial();
 });
 
-function alternarModal(abrir) {
-    const modal = document.getElementById('modal-devs');
-    if (abrir) {
-        modal.classList.add('active');
-    } else {
-        modal.classList.remove('active');
-    }
+function alternarModal(id, abrir) {
+    const modal = document.getElementById(id);
+    if (abrir) modal.classList.add('active');
+    else modal.classList.remove('active');
 }
 
+// LOGICA DO TUTORIAL DO PROCESSO
+let passoAtual = 1;
+const textosTutorial = {
+    1: { titulo: "Passo 1 / 3: Homogeneização", texto: "Em um recipiente, junte o amido, a água, a glicerina e o vinagre. Misture bem até que todo o amido esteja completamente dissolvido antes de aquecer." },
+    2: { titulo: "Passo 2 / 3: Polimerização", texto: "Leve a mistura ao fogo baixo, mexendo sempre. Quando virar uma pasta firme e translúcida (bioplástico), desligue o fogo e incorpore homogeneamente os 5g de fibra de coco." },
+    3: { titulo: "Passo 3 / 3: Moldagem e Cura", texto: "Molde a massa ainda morna no formato do tubete e deixe secar por alguns dias até ganhar rigidez estrutural. Abaixo você confere o resultado real do lote finalizado!" }
+};
+
+function atualizarTutorial() {
+    document.getElementById('tuto-passo-titulo').innerText = textosTutorial[passoAtual].titulo;
+    document.getElementById('tuto-passo-texto').innerText = textosTutorial[passoAtual].texto;
+    
+    // Mostra a imagem somente no passo final
+    const imagem = document.getElementById('tuto-img');
+    if(passoAtual === 3) {
+        imagem.style.display = 'block';
+    } else {
+        imagem.style.display = 'none';
+    }
+
+    // Controla estado dos botões
+    document.getElementById('btn-tuto-voltar').style.opacity = passoAtual === 1 ? '0.4' : '1';
+    document.getElementById('btn-tuto-avancar').innerText = passoAtual === 3 ? "Concluir" : "Avançar";
+}
+
+function mudarPasso(direcao) {
+    passoAtual += direcao;
+    if(passoAtual < 1) passoAtual = 1;
+    if(passoAtual > 3) {
+        passoAtual = 3;
+        alternarModal('modal-tutorial', false); // Fecha ao concluir
+        passoAtual = 1; // Reinicia para a próxima abertura
+    }
+    atualizarTutorial();
+}
+
+// CÁLCULOS E REQUISITOS DO APP
 function calcularPrevisao() {
     let coco = parseFloat(document.getElementById('coco').value) || 0;
     let ovo = parseFloat(document.getElementById('ovo').value) || 0;
     let banana = parseFloat(document.getElementById('banana').value) || 0;
-
     let pesoTotal = coco + ovo + banana;
     document.getElementById('peso-total').innerText = pesoTotal.toFixed(1);
 
@@ -653,50 +599,38 @@ function calcularPrevisao() {
         semanas = Math.round((coco * 1.6) + (ovo * 0.5) + (banana * 0.4));
         if (semanas < 3) semanas = 3; 
     }
-
     document.getElementById('tempo-resultado').innerText = semanas + " Semanas";
     return { coco, ovo, banana, semanas, pesoTotal };
 }
 
 function registrarTubete() {
     let dados = calcularPrevisao();
-    
-    if (dados.pesoTotal <= 0) {
-        alert("Por favor, digite valores válidos de biomassa antes de salvar.");
-        return;
-    }
+    if (dados.pesoTotal <= 0) { alert("Digite valores válidos de biomassa."); return; }
 
-    let novoLote = {
+    dbTubetes.push({
         id: Date.now(),
         data: new Date().toLocaleDateString('pt-BR'),
         hora: new Date().toLocaleTimeString('pt-BR', {hour: '2-digit', minute:'2-digit'}),
-        coco: dados.coco,
-        ovo: dados.ovo,
-        banana: dados.banana,
-        semanas: dados.semanas,
-        peso: dados.pesoTotal
-    };
-
-    dbTubetes.push(novoLote);
-    localStorage.setItem('sustentatub_premium_db', JSON.stringify(dbTubetes));
+        coco: dados.coco, ovo: dados.ovo, banana: dados.banana,
+        semanas: dados.semanas, peso: dados.pesoTotal
+    });
+    localStorage.setItem('simutub_premium_db', JSON.stringify(dbTubetes));
     renderizarFeed();
 }
 
 function deletarRegistro(id) {
-    dbTubetes = dbTubetes.filter(item => item.id !== item.id); // Ajustado para remover o ID correto
     dbTubetes = dbTubetes.filter(item => item.id !== id);
-    localStorage.setItem('sustentatub_premium_db', JSON.stringify(dbTubetes));
+    localStorage.setItem('simutub_premium_db', JSON.stringify(dbTubetes));
     renderizarFeed();
 }
 
 function renderizarFeed() {
     let feedContainer = document.getElementById('feed-lista');
     feedContainer.innerHTML = '';
-    
     document.getElementById('contador').innerText = dbTubetes.length;
 
     if(dbTubetes.length === 0) {
-        feedContainer.innerHTML = `<p style="color:#475569; font-size:12px; text-align:center; padding: 30px; border: 1px dashed rgba(255,255,255,0.05); border-radius:14px;">Aguardando inserção de dados biológicos...</p>`;
+        feedContainer.innerHTML = `<p style="color:#475569; font-size:12px; text-align:center; padding: 30px;">Aguardando inserção de dados...</p>`;
         return;
     }
 
@@ -704,24 +638,16 @@ function renderizarFeed() {
         let indiceReal = dbTubetes.length - index;
         feedContainer.innerHTML += `
             <div class="feed-item">
-                <h4>
-                    <span>LOTE BIODEGRADÁVEL #${indiceReal}</span>
-                    <button class="btn-delete" onclick="deletarRegistro(${tubete.id})"><i class="fa-solid fa-trash-can"></i></button>
-                </h4>
-                <p><strong>Massa Monitorada:</strong> ${tubete.peso.toFixed(1)}g em ${tubete.data} às ${tubete.hora}</p>
-                <p style="font-size: 11px; margin-top: 3px; color: #64748b;">Receita: ${tubete.coco}g coco | ${tubete.ovo}g ovo | ${tubete.banana}g banana</p>
-                <p style="color:#70e000; font-weight: bold; margin-top: 5px; font-size: 11px; letter-spacing: 0.5px;">
-                    <i class="fa-solid fa-hourglass-start"></i> DECOMPOSIÇÃO ESTIMADA: ${tubete.semanas} SEMANAS
-                </p>
-            </div>
-        `;
+                <h4><span>LOTE #${indiceReal}</span><button class="btn-delete" onclick="deletarRegistro(${tubete.id})"><i class="fa-solid fa-trash-can"></i></button></h4>
+                <p><strong>Massa:</strong> ${tubete.peso.toFixed(1)}g em ${tubete.data} às ${tubete.hora}</p>
+                <p style="font-size: 11px; color:#64748b;">Composição: ${tubete.coco}g coco | ${tubete.ovo}g ovo | ${tubete.banana}g banana</p>
+                <p style="color:#70e000; font-weight: bold; font-size: 11px; margin-top:4px;"><i class="fa-solid fa-hourglass-start"></i> INTEGRAÇÃO: ${tubete.semanas} SEMANAS</p>
+            </div>`;
     });
 }
 
-// Inicialização imediata
 calcularPrevisao();
 renderizarFeed();
 </script>
-
 </body>
 </html>
